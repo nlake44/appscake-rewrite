@@ -1,0 +1,15 @@
+*.py[co]
+*.sw[po]
+*.egg*
+.coverage
+.DS_Store
+.noseids
+tmp/*
+*.swp
+*~
+*.mo
+*.log
+.vagrant
+*.sublime-project
+*.sublime-workspace
+
