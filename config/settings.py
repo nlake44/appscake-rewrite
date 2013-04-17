@@ -1,4 +1,4 @@
-# Django settings for appscake_rewrite project.
+# Django settings for config project.
 
 import os
 PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -106,10 +106,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'appscake_rewrite.urls'
+ROOT_URLCONF = 'config.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'appscake_rewrite.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

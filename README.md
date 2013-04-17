@@ -16,15 +16,8 @@ based on Sinatra. So far it has been tested in Xen and EC2 cloud
 environments.
 
 ## Prerequisites ##
-
-- Prior knowledge of AppScale - www.appscale.com/
-- Python 2.6 or 2.7
-
-
-## Installation ##
-
-Fill out with installation instructions for your project.
-
+- Python 2.7
+- Django 1.5 (get the tar ball here: https://www.djangoproject.com/download/1.5.1/tarball/)
 
 License
 -------
