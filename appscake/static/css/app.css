@@ -6,3 +6,16 @@
    css/less/bootstrap.less file.
 
    ========================================================================== */
+
+ #admin_pass, #pass_confirm, #keyname, #email, #id_deploy_option1, #id_deploy_option2{
+    width: 300px;
+}
+
+#ips_yaml {
+    width: 555px;
+}
+
+#launch {
+    bottom: 10px;
+    left: 10px;
+}

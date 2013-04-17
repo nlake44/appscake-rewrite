@@ -1,36 +1,5 @@
 {% extends "_layouts/base.html" %}
-
-{% block page_title %}AppsCake{% endblock %}
-{% block page_class %}Home{% endblock %}
 {% block content %}
-
-
-<div class="navbar navbar-inverse navbar-fixed-top" xmlns="http://www.w3.org/1999/html"
-     xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="#">AppsCake</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li><a href="http://www.github.com/AppScale/appscale/wiki/">Wiki</a> </li>
-                            <li><a href="http://community.appscale.com/">Community</a> </li>
-                            <li><a href="http://www.appscale.com/contact">Contact</a></li>
-                        </ul>
-                        <!--<form class="navbar-form pull-right">
-                            <input class="span2" type="text" placeholder="Admin">
-                            <input class="span2" type="password" placeholder="Password">
-                            <button type="submit" class="btn">Sign in</button>
-                        </form>-->
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
-
         <div class="container">
             <div class="span10 hero-unit">
                 <h1>Welcome to AppsCake!</h1></br>
@@ -40,27 +9,30 @@
                 <p><a href="http://www.appscale.com/" class="btn btn-primary btn-large">Learn more about AppScale &raquo;</a></p>
                     <hr/>
                 <br>
-                <form>
-                    <div class="row">
+                <form action="/start/" method="post" data-validate="parsley">{% csrf_token %}
+                    {{ form.non_field_errors }}
+                        <div class="row">
                         <div class="span4">
-                            <label>Deploy over:</label>
-                            <select id="iaas" name="Infrastructure" class="span4">
-                                <option value="vbox">Virtualbox</option>
-                                <option value="ec2">Amazon EC2</option>
-                                <option value="euca">Eucalyptus</option>
-                            </select>
-                            <label>Admin Username:</label>
-                            <input type="text" class="span4" placeholder="Your name">
-                            <label>Admin Email:</label>
-                            <input type="text" class="span4" placeholder="Your Email Address">
-                            <label>Admin Password (must be 6+ characters):</label>
-                            <input type="text" class="span4" placeholder="Admin password">
-                            <label>Confirm Password:</label>
-                            <input type="text" class="span4" placeholder="Confirm password">
-                            <label>Deployment Keyname:</label>
-                            <input type="text" class="span4" placeholder="Name your instance">
-                            <br> <br>
-                            <button type="submit" style="margin:1px 0 0 -1px;" class="span4 btn btn-large btn-success pull-left">Launch Now!</button>
+                            <label for="deploy_option1">Choose deployment infrastructure:</label>
+                                {{ form.deploy_option1 }}
+                                {{ feild }}
+                            <label for="deploy_option1">Choose deployment setting:</label>
+                                {{ form.deploy_option2 }}
+                                {{ feild }}
+                            <label for="email">Admin Email:</label>
+                                {{ form.admin_email }}
+                                {{ feild }}
+                            <label for="id_admin_pass">Admin password:</label>
+                                {{ form.admin_pass }}
+                                {{ field }}
+                            <label for="id_pass_confirm">Confirm password:</label>
+                                {{ form.pass_confirm }}
+                                {{ field }}
+                            <label for="id_keyname">AppScale keyname:</label>
+                                {{ form.keyname }}
+                                {{ field }}
+
+                            <button type="submit" style="margin:3px 0 0 0; width: 314px;" class="btn btn-large btn-success pull-left">Launch Now!</button>
                         </div>
                         <div class="span6">
                             <p>Enter the desired deployment strategy in the dialog box below, if you are unfamiliar with how this works, please visit the <a href="http://www.github.com/AppScale/appscale/wiki">docs</a>. Below is a sample strategy: </p>
@@ -71,11 +43,10 @@ ips_layout:
   database: 192.168.33.10
   zookeeper: 192.168.33.10
                                 </pre>
-                            <label>Enter your ips.yaml configuration below:</label>
-                            <textarea name="message" id="message" class="input-xlarge span6" rows="10"></textarea>
+                            <label for="id_ips_yaml">Enter your ips.yaml configuration below:</label>
+                            {{ form.ips_yaml }}
+                            {{ field }}
                         </div>
-
-
                     </div>
                 </form>
             </div>
