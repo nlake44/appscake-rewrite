@@ -24,40 +24,33 @@ def virtualbox_form(request):
   return render(request, 'base/virtualbox.html')
 
 def start(request):
-  if request.method != 'POST':
+  """ This is the page a user submits a request to start AppScale. """
+  if request.method == 'POST':
     form = CommonFields(data=request.POST)
-    print form
-    cloud_type = form['cloud_type'] 
 
     email = form['admin_email']
     password = form['admin_pass']
     keyname = helpers.generate_keyname()
 
-    if cloud_type == CLUSTER_DEPLOY:
-      ips_yaml = form['ips_yaml']
-    elif cloud_type == CLOUD_DEPLOY:
+    cloud_type = form['cloud_type'] 
+    if cloud_type == CLOUD_DEPLOY:
       infras = form['infrastructure'] 
-     
-    if form.is_valid():
-      return HttpResponseRedirect('/start/') # Redirect after POST
-
-  else:
-    infras = request.POST['deploy_option1']
-    cloud_type = request.POST['deploy_option2']
-    admin_user = request.POST['admin_email']
-    admin_pass = request.POST['admin_pass']
-    pass_confirm = request.POST['pass_confirm']
-    keyname =  request.POST['keyname']
-    ips_yaml = request.POST['ips_yaml']
-    instance_args = {'infras': 'infras', 'cloud_type': 'cloud_type',
-                 'admin_user': 'admin_user', 'admin_pass': 'admin_pass',
-                 'keyname': 'keyname', 'ips_yaml': 'ips_yaml'}
-    print instance_args
-
-    # options = { 'keyname' => keyname, 'ips_layout' => 'something'}
-
+      deployment_type = form['deployment_type']
+      if deployment_type == ADVANCE_DEPLOYMENT:
+        ips_yaml = form['ips_yaml']
+      elif deployment_type == SIMPLE_DEPLOYMENT:
+        min_nodes = form['min']
+        max_nodes = form['max']
+      machine = form['machine']
+    elif cloud_type == CLUSTER_DEPLOY:
+      ips_yaml = form['ips_yaml']
   #AppScaleTools.run_instances(options)
-  return  render(request, 'base/start.html')
+    
+    if not form.is_valid():
+      return HttpResponseRedirect('/start/?error=badform') # Redirect after POST
+      # Fire it off in a thread and then redirect to a page that polls.
+  else:
+    return  render(request, 'base/start.html')
 
 
 
