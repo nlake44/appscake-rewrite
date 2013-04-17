@@ -44,7 +44,6 @@ def start(request):
       machine = form['machine']
     elif cloud_type == CLUSTER_DEPLOY:
       ips_yaml = form['ips_yaml']
-  #AppScaleTools.run_instances(options)
     
     if not form.is_valid():
       return HttpResponseRedirect('/start/?error=badform') # Redirect after POST
