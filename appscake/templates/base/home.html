@@ -2,23 +2,123 @@
 {% block content %}
         <div class="container">
             <div class="span10 hero-unit">
-                <h1>Welcome to AppsCake!</h1></br>
+                <h1>Welcome to AppsCake!</h1>
+                <h3>AppsCake makes deploying AppScale a peice of cake!</h3>
                 <p>AppsCake is an easy to use web app capable of deploying AppScale, the open source app engine, over various infrastructures.
                 AppsCake currently supports deployment strategies over Amazon EC2, Eucalyptus Private Cloud and
                 Virtualbox.</p>
                 <p><a href="http://www.appscale.com/" class="btn btn-primary btn-large">Learn more about AppScale &raquo;</a></p>
                     <hr/>
-                <br>
-                <form action="/start/" method="post" data-validate="parsley">{% csrf_token %}
-                    {{ form.non_field_errors }}
+
+                <!--<div class="row">
+                    <div class="span3">
+                        <h3 class="demo-panel-title">Checkboxes</h3>
+                        <label class="checkbox" for="checkbox1">
+                            <input type="checkbox" value="" id="checkbox1">
+                            Unchecked
+                        </label>
+                        <label class="checkbox" for="checkbox2">
+                            <input type="checkbox" checked="checked" value="" id="checkbox2">
+                            Checked
+                        </label>
+
+                        <label class="checkbox" for="checkbox3">
+                            <input type="checkbox" value="" id="checkbox3" disabled="">
+                            Disabled unchecked
+                        </label>
+                        <label class="checkbox" for="checkbox4">
+                            <input type="checkbox" checked="checked" value="" id="checkbox4" disabled="">
+                            Disabled checked
+                        </label>
+                    </div>
+
+                    <div class="span3">
+                        <h3 class="demo-panel-title">Radio Buttons</h3>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                            Radio is off
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1" checked="">
+                            Radio is on
+                        </label>
+
+                        <label class="radio">
+                            <input type="radio" name="optionsRadiosDisabled" id="optionsRadios3" value="option2" disabled="">
+                            Disabled radio is off
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadiosDisabled" id="optionsRadios4" value="option2" checked="" disabled="">
+                            Disabled radio is on
+                        </label>
+                    </div>
+
+                    <div class="span3">
+                        <h3 class="demo-panel-title">Toggles</h3>
+
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+                                    <div class="toggle">
+                                        <label class="toggle-radio" for="toggleOption2">ON</label>
+                                        <input type="radio" name="toggleOptions" id="toggleOption1" value="option1" checked="checked">
+                                        <label class="toggle-radio" for="toggleOption1">OFF</label>
+                                        <input type="radio" name="toggleOptions" id="toggleOption2" value="option2">
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="toggle">
+                                        <label class="toggle-radio" for="toggleOption4">ON</label>
+                                        <input type="radio" name="toggleOptions2" id="toggleOption3" value="option3">
+                                        <label class="toggle-radio" for="toggleOption3">OFF</label>
+                                        <input type="radio" name="toggleOptions2" id="toggleOption4" value="option4" checked="checked">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="toggle toggle-icon">
+                                        <label class="toggle-radio fui-checkmark-16" for="toggleOption6"></label>
+                                        <input type="radio" name="toggleOptions3" id="toggleOption5" value="option5" checked="checked">
+                                        <label class="toggle-radio fui-cross-16" for="toggleOption5"></label>
+                                        <input type="radio" name="toggleOptions3" id="toggleOption6" value="option6">
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="toggle toggle-icon">
+                                        <label class="toggle-radio fui-checkmark-16" for="toggleOption8"></label>
+                                        <input type="radio" name="toggleOptions4" id="toggleOption7" value="option7">
+                                        <label class="toggle-radio fui-cross-16" for="toggleOption7"></label>
+                                        <input type="radio" name="toggleOptions4" id="toggleOption8" value="option8" checked="checked">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>-->
+
+
+                    <br>
+
+
+
+
                         <div class="row">
-                        <div class="span4">
-                            <label for="deploy_option1">Choose deployment infrastructure:</label>
-                                {{ form.deploy_option1 }}
-                                {{ feild }}
-                            <label for="deploy_option1">Choose deployment setting:</label>
-                                {{ form.deploy_option2 }}
-                                {{ feild }}
+                        <div idclass="span4">
+
+
+                            <form action="/start/" method="post" data-validate="parsley">{% csrf_token %}
+                                {{ form.non_field_errors }}
+
+                            <label>Choose deployment infrastructure:</label>
+                                {{ form.cloud }}
+                                {{ field }}
+                        </div>
+
+
+
+                        <div class="span4" id="clusterDiv" style="display: none;">
                             <label for="email">Admin Email:</label>
                                 {{ form.admin_email }}
                                 {{ feild }}
@@ -31,11 +131,62 @@
                             <label for="id_keyname">AppScale keyname:</label>
                                 {{ form.keyname }}
                                 {{ field }}
+                            <br><br>
 
                             <button type="submit" style="margin:3px 0 0 0; width: 314px;" class="btn btn-large btn-success pull-left">Launch Now!</button>
                         </div>
-                        <div class="span6">
-                            <p>Enter the desired deployment strategy in the dialog box below, if you are unfamiliar with how this works, please visit the <a href="http://www.github.com/AppScale/appscale/wiki">docs</a>. Below is a sample strategy: </p>
+
+                        <div class="span4" id="cloudDiv" style="display: none;">
+                            <h1>CLOUD</h1>
+                            <label for="deploy_option1">Choose deployment setting:</label>
+                            {{ form.infras }}
+                            {{ feild }}
+                            <label for="machine">Choose machine type:</label>
+                            {{ form.machine }}
+                            {{ feild }}
+                            <label for="key">Enter your Amazon EC2/Eucalyptus Secret:</label>
+                            {{ form.key }}
+                            {{ feild }}
+                            <label for="secret">Enter your Amazon EC2/Eucalyptus Key:</label>
+                            {{ form.secret }}
+                            {{ feild }}
+                            <label for="email">Admin Email:</label>
+                            {{ form.admin_email }}
+                            {{ feild }}
+                            <label for="id_admin_pass">Admin password:</label>
+                            {{ form.admin_pass }}
+                            {{ field }}
+                            <label for="id_pass_confirm">Confirm password:</label>
+                            {{ form.pass_confirm }}
+                            {{ field }}
+                            <label for="id_keyname">AppScale keyname:</label>
+                            {{ form.keyname }}
+                            {{ field }}
+                            <button type="submit" style="margin:3px 0 0 0; width: 314px;" class="btn btn-large btn-success pull-left">Launch Now!</button>
+                        </div>
+
+                        <div  class="span6">
+                            <div id="sim_adv_div" style="display: none;">
+                            <label>Select deployment option:</label>
+                            {{ form.advanced }}
+                            {{ field }}
+                            </div>
+                            <div id="advanced_div" style="display:none;">
+                                <div class="pull-left" style="padding-right: 40px;">
+                                <label>Minimum number of nodes:</label>
+                                {{ form.min }}
+                                {{ feild }}
+                                </div>
+                                <div class="pull-right"></div>
+                                <label>Maximum number of nodes:</label>
+                                {{ form.max }}
+                                {{ feild }}
+                            </div>
+                            <div id="ips_yaml_div" style="display: none;">
+                            <p>Enter the desired deployment strategy in the dialog box below,
+                                if you are unfamiliar with how this works, please visit the
+                                <a href="https://github.com/AppScale/appscale/wiki/Advanced-Deployment">docs</a>.
+                                Below is a sample strategy: </p>
                                 <pre>
 ips_layout:
   master : 192.168.33.10
@@ -46,8 +197,14 @@ ips_layout:
                             <label for="id_ips_yaml">Enter your ips.yaml configuration below:</label>
                             {{ form.ips_yaml }}
                             {{ field }}
+                            </div>
                         </div>
                     </div>
                 </form>
+
+
+
             </div>
+</div>
+
 {% endblock %}
