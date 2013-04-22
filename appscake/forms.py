@@ -70,12 +70,12 @@ class CommonFields(forms.Form):
     'data-trigger':"change", 'data-required':"true"}))
 
     admin_pass = forms.CharField(widget=forms.PasswordInput(render_value=False,
-    attrs={'id':'admin_pass', 'name':"admin_pass", 'data-trigger':"change", 'data-required':"true"}),
+    attrs={'id':'admin_pass', 'name':"admin_pass", 'data-equalto': '#equalToModel', 'data-trigger':"change", 'data-required':"true"}),
     label=("Admin Password"), min_length=6, required=True, )
 
     pass_confirm = forms.CharField(widget=forms.PasswordInput(render_value=False,
-    attrs={'id':'pass_confirm', 'name':"pass_confirm", 'data-trigger':"change", 'data-required':"true"}),
-    label=("Confirm Password"), min_length=6, required=True)
+    attrs={'id':'pass_confirm eqalToModel', 'data-equalto': '#equalToModel', 'name':"pass_confirm", 'data-trigger':"change", 'data-required':"true"}),
+    label="Confirm Password", min_length=6, required=True)
 
     keyname = forms.CharField(min_length=4, max_length=24, required=True,
     widget=forms.TextInput(attrs={'id':'keyname', 'name':"keyname",
@@ -86,6 +86,18 @@ class CommonFields(forms.Form):
     'data-required':"true"}), required=True)
 
     machine = forms.ChoiceField(choices=MACHINE)
+
+    def clean_password(self):
+      if self.data['admin_pass'] != self.data['pass_confirm']:
+        raise forms.ValidationError('Passwords are not the same')
+      return self.data['admin_pass']
+
+    def clean(self,*args, **kwargs):
+      self.clean_password()
+      return super(CommonFields, self).clean(*args, **kwargs)
+
+
+
 
 def clean_forms(self):
   clean_secret = self.cleaned_data['secret']
