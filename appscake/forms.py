@@ -32,11 +32,10 @@ class CommonFields(forms.Form):
                               required = True,
                               label = False,
                               widget=forms.RadioSelect(attrs={
-                                   'name': 'optionsRadios2',
-                                   'value': 'option1',
+                                   'value': '',
                                    'onclick': 'checkTransType(this.value)',
                                    'type': 'radio',
-                                   'name': 'optionsRadios'
+                                   'name': '',
 
                                    }))
 

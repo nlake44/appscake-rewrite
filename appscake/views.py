@@ -25,6 +25,9 @@ def about(request):
 def virtualbox_form(request):
   return render(request, 'base/virtualbox.html')
 
+def virtualbox_form(request):
+  return render(request, 'base/test.json')
+
 def start(request):
   """ This is the page a user submits a request to start AppScale. """
   if request.method == 'POST':

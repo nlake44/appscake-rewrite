@@ -1323,7 +1323,7 @@ textarea,
 .not_valid {
     background: #fbd8db !important;
     color: #90111a !important; }
-
+/*
 .progress, .ui-slider {
     background: #e8edf2;
     border-radius: 32px;
@@ -1350,7 +1350,7 @@ textarea,
 .progress .bar-info, .ui-slider .bar-info {
     background-color: #3498db;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); }
-
+*/
 .ui-slider {
     margin-bottom: 20px;
     position: relative; }
@@ -1857,7 +1857,7 @@ footer p {
     background-color: #1abc9c;
     color: #cff3ec;
     margin-left: 42px;
-    min-height: 286px;
+    min-height: 100px;
     padding: 0 30px 30px; }
 .footer-banner .footer-title {
     color: white; }
