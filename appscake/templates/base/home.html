@@ -22,8 +22,8 @@
                 <form action="/start/" method="post" data-validate="parsley" name="form"> {% csrf_token %}
                     {{ form.non_field_errors }}
                     <label>Choose deployment infrastructure:</label>
-                    <label><input class="" id="rdb1" type="radio" name="toggler" value="1"  />Cluster</label>
-                    <label><input class="" id="rdb2" type="radio" name="toggler" value="2"  />Cloud</label>
+                    <label class="radio"><input class="" id="rdb1 optionsRadio1" type="radio" name="toggler" value="1"  />Cluster</label>
+                    <label class="radio"><input class="" id="rdb2" type="radio" name="toggler" value="2"  />Cloud</label>
 
             </div>
         </div>
@@ -106,12 +106,13 @@ ips_layout:
                             <div class="span6">
 
                                 <label>Select deployment strategy:</label>
-                                <select id="selectField">
-                                    <option value="option1">Simple</option>
-                                    <option value="option2">Advanced</option>
+                                <select class="strat_fix" id="selectField">
+                                    <option class="strat_fix" value="option0">-- Select Strategy --</option>
+                                    <option class="strat_fix" value="option1">Advanced</option>
+                                    <option class="strat_fix" value="option2">Simple</option>
                                 </select>
 
-                                <div id="option1" class="box"><p>Enter the desired deployment strategy in the dialog box below,
+                                <div id="option1" class="box" style="display: none;"><p>Enter the desired deployment strategy in the dialog box below,
                                     if you are unfamiliar with how this works, please visit the
                                     <a href="https://github.com/AppScale/appscale/wiki/Advanced-Deployment">docs</a>.
                                     Below is a sample strategy: </p>

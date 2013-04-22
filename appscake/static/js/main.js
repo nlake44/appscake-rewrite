@@ -9,7 +9,7 @@ $(function() {
 
 $(document).ready(function () {
     $('.box').hide();
-    $('#option1').show();
+    $('#option0').show();
     $('#selectField').change(function () {
         $('.box').hide();
         $('#'+$(this).val()).show();
