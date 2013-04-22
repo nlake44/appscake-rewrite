@@ -177,7 +177,7 @@ class ToolsRunner(threading.Thread):
     """
     status_dict['status'] = self.status
     status_dict['percent'] = 0
-    if self.status = INIT_STATE:
+    if self.status == INIT_STATE:
       pass
     elif self.status == ERROR_STATE:
       status_dict['error_message'] = self.err_message
@@ -185,5 +185,6 @@ class ToolsRunner(threading.Thread):
       status_dict['percent'] = self.get_completion_percentage()
     elif self.status == COMPLETE_STATE:
       status_dict['percent'] = 100 
-
+    else:
+      status_dict['error_message'] = "Unknown state"
     return status_dict
