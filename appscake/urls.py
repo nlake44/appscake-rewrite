@@ -8,6 +8,7 @@ urlpatterns = patterns('appscake.views',
     (r'^common/.*', 'common',),
     url(r'virtualbox/$', views.virtualbox_form),
     url(r'start/$', 'start'),
+    url(r'test/$', 'test')
 
     )
 

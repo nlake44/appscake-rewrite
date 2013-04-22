@@ -32,11 +32,10 @@ class CommonFields(forms.Form):
                               required = True,
                               label = False,
                               widget=forms.RadioSelect(attrs={
-                                   'name': 'optionsRadios2',
-                                   'value': 'option1',
+                                   'value': '',
                                    'onclick': 'checkTransType(this.value)',
                                    'type': 'radio',
-                                   'name': 'optionsRadios'
+                                   'name': '',
 
                                    }))
 
@@ -48,7 +47,10 @@ class CommonFields(forms.Form):
                                       'onclick': 'checkMinMax(this.value)',
                                     }))
 
-    machine = forms.ChoiceField(choices=MACHINE)
+    machine = forms.ChoiceField(choices=MACHINE,
+                                widget=forms.Select(attrs={
+                                  'class': 'dk_fix'
+                                }))
 
     key = forms.CharField(label=("EC2/Eucalyptus Key"), required=True)
 
@@ -56,6 +58,7 @@ class CommonFields(forms.Form):
 
     infras = forms.ChoiceField(choices=INFRAS, widget=forms.Select(attrs={
       'id': 'infrastructure',
+      'class': 'dk_fix'
     }))
 
     min = forms.IntegerField(max_value=100,min_value=1)

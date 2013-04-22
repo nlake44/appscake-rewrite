@@ -5,12 +5,13 @@ from appscake import helpers
 from appscake import create_instances
 from appscake.forms import CommonFields
 from appscake.forms import Cluster
-
+ 
 from django.contrib import  messages
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import render_to_response
+from django.utils import simplejson
 
 
 # When deploying on virtual machines without IaaS support.
@@ -28,11 +29,23 @@ def home(request):
 def about(request):
   return render(request, 'base/about.html')
 
-def virtualbox_form(request):
-  return render(request, 'base/virtualbox.html')
-
 def get_status(request):
-  return create_instances.get_status()
+  """ Returns a json string of the status of the tools being run. """
+  post = request.POST.copy()
+  identifier = None
+  if 'tools_id' in post:
+    identifier = post['tools_id']
+  else:
+    message = { 'error': True, 'error_message': 
+      "Bad JSON request (missing tools_id identifier)."}
+    return HttpResponse(simplejson.dumps(message))  
+
+  if identifier not in ALL_THREADS[post['tools_id']]:
+    message = {'error': True, 'error_message': 
+      "Unknown identifier give {0}.".form(identifier)}
+
+  message = ALL_THREADS[identifier].get_status()
+  return HttpResponse(simplejson.dumps(message))  
 
 def start(request):
   """ This is the page a user submits a request to start AppScale. """
